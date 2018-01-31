@@ -78,20 +78,20 @@ class fibonacci:
         return self.fib[self.current-1]
 
 
-    def imperative(n):
-        """
-        "regular" memoized implementation of the fibonacci series
+def imperative_fibonacci(n):
+    """
+    "regular" memoized implementation of the fibonacci series
 
-        Returns a list of the fibonacci elements up to the nth element.
-        """
-        fib = [0, 1]
-        for i in range(0,n):
-            if i > 1:
-                fib.append(fib[i-1] + fib[i-2])
+    Returns a list of the fibonacci elements up to the nth element.
+    """
+    fib = [0, 1]
+    for i in range(0,n):
+        if i > 1:
+            fib.append(fib[i-1] + fib[i-2])
 
-            i += 1
+        i += 1
 
-        return fib
+    return fib
 
 
 if __name__ == '__main__':
