@@ -20,23 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 """
-middlesquare: generate 100 random numbers with the von Neumann generator
+middlesquare: generate random numbers with the von Neumann generator
 
 USAGE:
-    middelsquare [N] [SEED]
+    middlesquare [N] [SEED]
 
 ARGS:
     [N] The number random numbers to generate, [default 100]
     [SEED] a 6 digit number with no zeros to start the sequence [default 123456]
 
-Print out 100 random "Von Neumann" numbers, or the desired number of numbers,
 
-Von Neumann generators are terrible for most random number purposes, this is just
-a toy example.
+Von Neumann generators are terrible for most random number purposes, this is
+just a toy example.  To see just how terrible it is, try out the following
+commands:
+
+    middlesquare 200 123431
+
+See how the generator "zeros out" because it ends up with zero as the middle
+digits of one of the intermediate values, making it mathematically impossible to
+produce anything other than zeros.
+
+    middlesquare 1000
+
+Notice how vaues start to repeat forever, which is very bad because random
+number generators should be difficult to predict, and follow a distribution.
 """
 
 from __future__ import print_function
 import sys
+
 
 class VonNeumann:
     """
