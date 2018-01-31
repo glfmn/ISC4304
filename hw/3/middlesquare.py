@@ -29,6 +29,9 @@ ARGS:
     [N] The number random numbers to generate, [default 100]
     [SEED] a 6 digit number with no zeros to start the sequence [default 123456]
 
+FLAGS:
+    -h, --help print help information
+
 
 Von Neumann generators are terrible for most random number purposes, this is
 just a toy example.  To see just how terrible it is, try out the following
