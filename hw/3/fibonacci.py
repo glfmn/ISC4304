@@ -23,10 +23,13 @@
 fibonacci: generate fibonacci numbers and print them to the terminal.
 
 USAGE:
-    fibbonacci <N>
+    fibbonacci <N> [FLAGS]
 
 ARGS:
     <N> The number of fibonacci numbers to print to terminal
+
+FLAGS:
+    -h, --help print help information
 
 Print numbers of the fibonacci sequence up to the Nth element, each separated by
 a single space.
@@ -92,8 +95,8 @@ class fibonacci:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        # print usage if things go wrong
+    if len(sys.argv) != 2 or sys.argv[1] in {"-h", "--help"}:
+        # print usage if things go wrong or if help is requested
         print(__doc__)
     else:
         # print fibonacci elements
