@@ -47,12 +47,12 @@ class fibonacci:
     """
 
 
-    def __init__(self, start=0, stop=None):
+    def __init__(self, start=0, end=None):
         """
-        Construct a fibonacci sequence, by default start at 0 and never end.
+        Construct a fibonacci sequence, by default start at 0 and never ending.
         """
         self.start=start
-        self.stop=stop
+        self.end=end
         self.current=0
         self.fib = [0, 1]
 
@@ -71,8 +71,8 @@ class fibonacci:
 
         self.current += 1
 
-        if self.stop is not None:
-            if self.current > self.stop:
+        if self.end is not None:
+            if self.current > self.end:
                 raise StopIteration
 
         return self.fib[self.current-1]
