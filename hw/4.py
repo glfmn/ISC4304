@@ -19,22 +19,14 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""
-Write very short python fragments to do the following:
-
-- Print a list of all odd numbers from 1 to 21 using two lines (1 line list comprehension, one line "print")
-- Print a list of square numbers from the largest to the smallest (start with x2 = 100)
-- Print a list of 10 random integer numbers drawn from a uniform distribution [3, 8), (a) show the result, (b) get all unique numbers from your list.
-- Generate a 2D grid of where each element is the tupel of the row and column, print the result
-"""
 
 import random
 
 def one():
     print [x for x in xrange(1,22) if x % 2 == 1]
 
-def two():
-    print [x**2 for x in xrange(100,0,-1)]
+def two(n):
+    print [x**2 for x in xrange(n,0,-1)]
 
 def three():
     print [random.randint(3,7) for _ in xrange(10)]
@@ -43,7 +35,11 @@ def four(dx,dy):
     print [[(x+1,y+1) for x in xrange(dx)] for y in xrange(dy)]
 
 if __name__ == '__main__':
+    print 'one:  ',
     one()
-    two()
+    print 'two:  ',
+    two(100)
+    print 'three:',
     three()
+    print 'four: ',
     four(3,3)
