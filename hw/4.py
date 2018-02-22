@@ -18,7 +18,16 @@
 # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# SOFTWARE
+"""
+python 4.py [GENOME]
+
+ARGUMETNS:
+    [GENOME] a link to the genome file to regex into
+"""
+
+import sys
+import re
 
 import random
 
@@ -35,10 +44,17 @@ def three():
     print [random.randint(3,7) for _ in xrange(10)]
 
 def four(dx,dy):
-    """print nested lists of ordered pairs which represent their row and column"""
+    """print nested lists of ordered pairs which represent their row and column
+
+    dx - number of rows, dy- number of columns"""
     print [[(x+1,y+1) for x in xrange(dx)] for y in xrange(dy)]
 
 if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print __doc__
+        sys.exit(1)
+
+    print '----- PT.1: LISTS ---'
     print 'one:  ',
     one()
     print 'two:  ',
@@ -47,3 +63,15 @@ if __name__ == '__main__':
     three()
     print 'four: ',
     four(3,3)
+
+    # Regex into genome file to find repeats of the sequences below:
+    print '----- PT.2: REGEX ---'
+
+    # Load the genome to search
+    genome = open(sys.argv[1], 'r').read()
+
+    # Match the sequences in the genome and count them
+    count = 0
+    for _ in re.finditer('AGAGA|TATA', genome): count += 1
+
+    print 'total matches of AGAGA or TATA: {}'.format(count)
