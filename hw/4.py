@@ -23,15 +23,19 @@
 import random
 
 def one():
+    """All odd integers between 22 and 0"""
     print [x for x in xrange(1,22) if x % 2 == 1]
 
 def two(n):
+    """Output the squares of the numbers from n..0 taking steps of -1"""
     print [x**2 for x in xrange(n,0,-1)]
 
 def three():
+    """print 10 random integers in the range [3, 8)"""
     print [random.randint(3,7) for _ in xrange(10)]
 
 def four(dx,dy):
+    """print nested lists of ordered pairs which represent their row and column"""
     print [[(x+1,y+1) for x in xrange(dx)] for y in xrange(dy)]
 
 if __name__ == '__main__':
