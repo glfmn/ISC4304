@@ -2,6 +2,7 @@
 # -*- coding: utf-8
 
 from itertools import chain
+import matplotlib.pyplot as plot
 
 def hilbert(origin, xb, yb, n):
     """
@@ -37,6 +38,17 @@ def hilbert(origin, xb, yb, n):
         return points
 
 if __name__ == '__main__':
-    H = hilbert((0.0, 0.0), (1.0, 0.0), (0.0, 1.0), 4)
 
-    print(H)
+    # Plot hilbert curve at 4 different recursion levels
+    for depth in range(4,8):
+        H = hilbert((0.0, 0.0), (1.0, 0.0), (0.0, 1.0), depth)
+
+        # Split tuples into X and Y lists
+        X, Y = [p[0] for p in H], [p[1] for p in H]
+
+        # Create a new figure so they don't overlap
+        plot.figure()
+        plot.plot(X, Y, 'r-', lw=1)
+
+    # Show them all at once so we don't have to close one to see the next
+    plot.show()
