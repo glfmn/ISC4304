@@ -2,6 +2,7 @@
 # -*- coding: utf-8
 
 from itertools import chain
+from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plot
 
 def hilbert(origin, xb, yb, n):
@@ -47,8 +48,6 @@ if __name__ == '__main__':
         X, Y = [p[0] for p in H], [p[1] for p in H]
 
         # Create a new figure so they don't overlap
-        plot.figure()
+        fig = plot.figure()
         plot.plot(X, Y, 'r-', lw=1)
-
-    # Show them all at once so we don't have to close one to see the next
-    plot.show()
+        PdfPages('hilbert{}.pdf'.format(depth)).savefig(fig)
