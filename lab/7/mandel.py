@@ -15,8 +15,6 @@ import numpy as np
 from subprocess import Popen, PIPE
 from pylab import imshow, show
 
-import pixmap
-
 if __name__ == '__main__':
     args = docopt(__doc__, version='mandel2 0.1.0')
 
