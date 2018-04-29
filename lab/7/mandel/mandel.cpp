@@ -16,7 +16,7 @@ namespace mandelbrot {
         auto z = complex{0, 0};
         for (unsigned i = 0; i < limit; i++) {
             z = z*z + c;
-            if (std::norm(z) > 2) {
+            if (z.real()*z.real() + z.imag()*z.imag() >= 4) {
                 return i;
             }
         }
@@ -41,44 +41,32 @@ inline std::complex<double> pixel_to_point(
 
 
 int main(int argc, char* argv[]) {
-    // auto test =  pixel_to_point(100, 100, 25, 75, {-1.0, 1.0}, {1.0, -1.0});
-    // auto expect = std::complex<double>(-0.5, -0.5);
-    // assert(test == expect);
-
-    if (argc < 6) {
+    if (argc < 5) {
         std::cerr
             << "Usage: " << argv[0]
             << " <file> <width> <height> <upper-left> <lower-right>\n"
             << "\nARGS:\n"
-            << "    file         file to output image to\n"
             << "    width        the number of pixels wide to make the image\n"
             << "    height       the number of pixels tall to make the image\n"
             << "    upper-left   complex number (REAL,IMAG) to map to the upper-right corner\n"
             << "    lower-right  complex number (REAL,IMAG) to map to the lower-left corner"
             << std::endl;
+        return 1;
     }
 
-    long int width = atol(argv[2]);
-    long int height = atol(argv[3]);
+    long int width = atol(argv[1]);
+    long int height = atol(argv[2]);
     std::complex<double> ul;
     std::complex<double> lr;
 
-    std::stringstream(argv[4]) >> ul;
-    std::stringstream(argv[5]) >> lr;
+    std::stringstream(argv[3]) >> ul;
+    std::stringstream(argv[4]) >> lr;
 
-    unsigned short max_color = 255;
-    {
-        std::ofstream image(argv[1], std::ios::binary);
-        image << "P6\n" << width << " " << height << "\n" << max_color << "\n";
+    for (size_t y = 0; y < height; y++) {
+        for (size_t x = 0; x < width; x++) {
+            auto c = pixel_to_point(width, height, y, x, ul, lr);
 
-        for (size_t y = 0; y < height; y++) {
-            for (size_t x = 0; x < width; x++) {
-                auto c = pixel_to_point(width, height, y, x, ul, lr);
-
-                unsigned char color = 255 - mandelbrot::escapes(c, max_color, 255);
-
-                image << color << color << color;
-            }
+            std::cout << 255 - mandelbrot::escapes(c, 255, 255) << ' ';
         }
     }
 
